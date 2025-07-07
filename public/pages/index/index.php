@@ -57,6 +57,17 @@ include(__DIR__ . '../../templates/head.php');
                     </tbody>
                 </table>
             </div>
+            <div class="col-xs-12">
+                <p>
+                    <a href="../../pages/newsfeed/newsfeed.php">
+                        <img src="../../assets/icons/rssicon.png"
+                            style="border:none"
+                            alt="Syndicate alien abductions">
+                        Click to syndicate the abduction news feed
+                    </a>
+
+                </p>
+            </div>
         </div>
     </div>
 </body>
