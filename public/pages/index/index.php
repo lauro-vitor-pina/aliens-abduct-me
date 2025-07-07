@@ -20,7 +20,7 @@ include(__DIR__ . '../../templates/head.php');
             </div>
 
             <div class="col-xs-12">
-                <table class="table table-striped">
+                <table class="table table-striped table-hover">
                     <thead>
                         <th>Actions</th>
                         <th>First Name</th>
@@ -49,7 +49,7 @@ include(__DIR__ . '../../templates/head.php');
                                 <td><?php echo $item['last_name']; ?> </td>
                                 <td><?php echo $item['email']; ?> </td>
                                 <td><?php echo $item['fang_spotted']; ?> </td>
-                                <td><?php echo $item['when_it_happened']; ?> </td>
+                                <td><?php echo date('d/m/Y', strtotime($item['when_it_happened'])); ?> </td>
                                 <td><?php echo $item['how_long']; ?> </td>
                                 <td><?php echo $item['how_many']; ?> </td>
                             </tr>
