@@ -1,6 +1,6 @@
 <?php
 
-function aliens_abduction_repository_get_all($dbc)
+function aliens_abduction_repository_get_all($dbc, $sort_prop, $sort_dir)
 {
     $query = "SELECT 
         `abduction_id`, 
@@ -16,6 +16,10 @@ function aliens_abduction_repository_get_all($dbc)
         `email` 
         FROM `aliens_abduction`
     ";
+
+    if(!empty($sort_prop) && !empty($sort_dir)){
+        $query = $query . "ORDER BY $sort_prop $sort_dir";
+    }
 
     $result_query = mysqli_query($dbc, $query);
 

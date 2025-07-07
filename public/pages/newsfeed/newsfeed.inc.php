@@ -1,5 +1,5 @@
-<?php
+<?php 
 
 require_once(__DIR__ . '../../../../src/services/aliens_abduction/aliens_abduction_service_get_all.php');
 
-$rows = aliens_abduction_service_get_all(null, null);
+$abductions = aliens_abduction_service_get_all('when_it_happened', 'DESC');
