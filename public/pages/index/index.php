@@ -40,9 +40,9 @@ include(__DIR__ . '../../templates/head.php');
                                     $link_delete = '../delete/delete.php?abduction_id=' . $item['abduction_id'];
                                     $link_edit = '../report/report.php?abduction_id=' . $item['abduction_id'];
                                     ?>
-                                    <a href="<?php echo $link_edit; ?>"><img src="../../assets/bootstrap/bootstrap-icons/pencil-square.svg" /></a>
+                                    <a href="<?php echo $link_edit; ?>"><img src="../../assets/icons/pencil-square.svg" /></a>
                                     &nbsp;
-                                    <a href="<?php echo $link_delete; ?>"><img src="../../assets/bootstrap/bootstrap-icons/trash-fill.svg" /></a>
+                                    <a href="<?php echo $link_delete; ?>"><img src="../../assets/icons/trash-fill.svg" /></a>
 
                                 </td>
                                 <td><?php echo $item['first_name']; ?> </td>
