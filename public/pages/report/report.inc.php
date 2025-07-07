@@ -3,7 +3,10 @@
 require_once(__DIR__ . '../../../../src/validators/only_letters_validator.php');
 require_once(__DIR__ . '../../../../src/validators/email_validator.php');
 require_once(__DIR__ . '../../../../src/validators/only_numbers_validator.php');
-require_once(__DIR__ . '../../../../src/services/aliens_abduction/aliens_abduction_service_insert.php');
+require_once(__DIR__ . '../../../../src/services/aliens_abduction/aliens_abduction_service_save.php');
+require_once(__DIR__ . '../../../../src/services/aliens_abduction/aliens_abduction_service_get_by_id.php');
+
+$abduction_id = null;
 
 $first_name = '';
 $first_name_err = '';
@@ -38,6 +41,10 @@ $success_message = '';
 $error_message = '';
 
 if (isset($_POST['submit'])) {
+
+    if (isset($_POST['abduction_id'])) {
+        $abduction_id = (int)$_POST['abduction_id'];
+    }
 
     $first_name = trim($_POST['first_name']);
     $last_name = trim($_POST['last_name']);
@@ -77,7 +84,8 @@ if (isset($_POST['submit'])) {
 
         try {
 
-            aliens_abduction_service_insert(
+            aliens_abduction_service_save(
+                $abduction_id,
                 $first_name,
                 $last_name,
                 $when_it_happened,
@@ -95,7 +103,32 @@ if (isset($_POST['submit'])) {
             $error_message = $ex->getMessage();
         }
     }
+} else if (isset($_GET['abduction_id'])) {
+
+    try {
+        $abduction_id = (int)$_GET['abduction_id'];
+
+        $result = aliens_abduction_service_get_by_id($abduction_id);
+
+        if ($result != null) {
+
+            $first_name = $result['first_name'];
+            $last_name = $result['last_name'];
+            $email = $result['email'];
+            $when_it_happened = $result['when_it_happened'];
+            $how_long = $result['how_long'];
+            $how_many = $result['how_many'];
+            $alien_description = $result['alien_description'];
+            $what_they_did = $result['what_they_did'];
+            $fang_spotted = $result['fang_spotted'];
+            $other = $result['other'];
+        }
+    } catch (Exception $ex) {
+        $error_message = 'An error in get abduction.';
+    }
 }
+
+#region VALIDATE
 
 
 function validate_form_report(
@@ -238,7 +271,7 @@ function validate_how_long($how_long)
 
 function validate_alien_description($alien_description)
 {
-    if (empty($value)) {
+    if (empty($alien_description)) {
         return  'Alien description is required.';
     }
 
@@ -262,3 +295,5 @@ function validate_fang_spotted($fang_spotted)
 
     return null;
 }
+
+#endregion

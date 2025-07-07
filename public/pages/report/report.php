@@ -9,9 +9,19 @@ include(__DIR__ . '../../templates/head.php');
 <body>
 
     <div class="container">
+        <p class="text-success">
+            <?php echo $success_message; ?>
+        </p>
+        <p class="text-danger">
+            <?php echo $error_message; ?>
+        </p>
+
         <p>Share your history of alien abduction:</p>
 
         <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+
+            <input type="hidden" name="abduction_id" value="<?php echo $abduction_id; ?>">
+
             <div class="row mb-3">
                 <div class="col-sm-6 col-xs-12">
                     <label class="form-label" for="first_name">First Name</label> <span class="text-danger">*</span>
@@ -124,16 +134,10 @@ include(__DIR__ . '../../templates/head.php');
 
             <div class="row">
                 <div class="col-sm-6 col-xs-12">
+                    <a class="btn btn-secondary" href="../index/index.php">Back</a>
                     <input class="btn btn-primary" type="submit" name="submit" value="Report an abduction">
                 </div>
             </div>
         </form>
-
-        <p class="text-success">
-            <?php echo $success_message; ?>
-        </p>
-        <p class="text-danger">
-            <?php echo $error_message; ?>
-        </p>
     </div>
 </body>
